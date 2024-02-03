@@ -19,7 +19,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/register", {
+      const res = await axios.post("https://ecomss.onrender.com", {
         name,
         email,
         password,
