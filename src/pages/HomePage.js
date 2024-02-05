@@ -38,7 +38,7 @@ const HomePage = () => {
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://ecomss.onrender.com/${page}`);
+      const { data } = await axios.get(`https://ecomss.onrender.com/api/v1/product/get-product ${page}`);
       
       setLoading(false);
       setProducts(data.products);
