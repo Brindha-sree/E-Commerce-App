@@ -6,6 +6,7 @@ import { Checkbox, Radio } from "antd";
 import { Prices } from "../components/Prices";
 import {useCart} from  '../context/cart';
 import toast from 'react-hot-toast';
+import "../styles/Homepage.css";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -34,11 +35,12 @@ const HomePage = () => {
     getAllCategory();
     getTotal();
   }, []);
+  
   //get products
   const getAllProducts = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://ecomss.onrender.com/api/v1/product/get-product ${page}`);
+      const { data } = await axios.get(`https://ecomss.onrender.com/api/v1/product/get-product`);
       
       setLoading(false);
       setProducts(data.products);
@@ -51,7 +53,7 @@ const HomePage = () => {
   //getTotal Count
   const getTotal = async () => {
     try {
-      const { data } = await axios.get("https://ecomss.onrender.com/");
+      const { data } = await axios.get("https://ecomss.onrender.com/api/v1/product/product-count");
       setTotal(data?.total);
     } catch (error) {
       console.log(error);
@@ -67,7 +69,7 @@ const HomePage = () => {
   const loadMore = async () => {
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://ecomss.onrender.com/${page}`);
+      const { data } = await axios.get(`https://ecomss.onrender.com/api/v1/product/product-list/${page}`);
       setLoading(false);
       setProducts([...products, ...data?.products]);
     } catch (error) {
@@ -97,7 +99,7 @@ const HomePage = () => {
   //get filterd product
   const filterProduct = async () => {
     try {
-      const { data } = await axios.post("https://ecomss.onrender.com/", {
+      const { data } = await axios.post("https://ecomss.onrender.com/api/v1/product/product-filters", {
         checked,
         radio,
       });
@@ -147,7 +149,7 @@ const HomePage = () => {
             {products?.map((p) => (
               <div className="card m-2" style={{ width: "18rem" }}>
                 <img
-                  src={`https://ecomss.onrender.com/${p._id}`}
+                  src={`https://ecomss.onrender.com/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />
