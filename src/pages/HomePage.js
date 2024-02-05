@@ -21,7 +21,7 @@ const HomePage = () => {
   //get all cat
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("https://ecomss.onrender.com/");
+      const { data } = await axios.get("https://ecomss.onrender.com/api/v1/category/get-category");
       if (data?.success) {
         setCategories(data?.category);
       }
