@@ -20,7 +20,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("https://ecomss.onrender.com", {
+      const { data } = await axios.post("https://ecomss.onrender.com/api/v1/category/create-category", {
         name,
       });
       if (data?.success) {
@@ -39,7 +39,7 @@ const CreateCategory = () => {
   
   const getAllCategory = async () => {
     try{
-      const{data} = await axios.get('https://ecomss.onrender.com')
+      const{data} = await axios.get('https://ecomss.onrender.com/api/v1/category/get-category')
       if(data.success) {
         setCategories(data.category);
       }
@@ -60,7 +60,7 @@ const CreateCategory = () => {
     e.preventDefault();
     try {
       const { data } = await axios.put(
-        `https://ecomss.onrender.com/${selected._id}`,
+        `https://ecomss.onrender.com/api/v1/category/update-category/${selected._id}`,
         { name: updatedName }
       );
       if (data.success) {
@@ -81,7 +81,7 @@ const CreateCategory = () => {
    const handleDelete = async (pId) => {
     try {
       const { data } = await axios.delete(
-        `https://ecomss.onrender.com ${pId}`
+        `https://ecomss.onrender.com/api/v1/category/delete-category/ ${pId}`
       );
       if (data.success) {
         toast.success(`category is deleted`);

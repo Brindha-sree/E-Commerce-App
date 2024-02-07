@@ -10,11 +10,11 @@ const Products = () => {
   //getall products
   const getAllProducts = async () => {
     try {
-      const { data } = await axios.get("https://ecomss.onrender.com");
+      const { data } = await axios.get("https://ecomss.onrender.com//api/v1/product/get-product");
       setProducts(data.products);
     } catch (error) {
       console.log(error);
-      toast.error("Someething Went Wrong");
+      toast.error("Something Went Wrong");
     }
   };
 
@@ -39,7 +39,7 @@ const Products = () => {
               >
                 <div className="card m-2" style={{ width: "18rem" }}>
                   <img
-                    src={`https://ecomss.onrender.com${p._id}`}
+                    src={`https://ecomss.onrender.com/api/v1/product/product-photo/${p._id}`}
                     className="card-img-top"
                     alt={p.name}
                   />
